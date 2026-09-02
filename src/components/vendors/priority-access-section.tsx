@@ -1,4 +1,4 @@
-'use client';
+
 
 import { motion } from 'framer-motion';
 import { ArrowUpRight, CheckCheck, CheckCircle, Mail, Shield } from 'lucide-react';

@@ -1,4 +1,4 @@
-'use client';
+
 
 import { motion } from 'framer-motion';
 import { Shield, TrendingUp, Zap } from 'lucide-react';
