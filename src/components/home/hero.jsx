@@ -1,0 +1,287 @@
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
+import { Input } from '../ui/input';
+import ErrorMessage from '../ui/error';
+import SuccessModal from '../ui/success';
+
+export default function Hero() {
+  return (
+    <section
+      id="home"
+      className="relative min-h-180 overflow-hidden bg-[#111211]"
+    >
+      {/* Background */}
+      <div className="absolute inset-0">
+        <img
+          src="/src/assets/lagos-at-night.jpg"
+          alt=""
+          aria-hidden="true"
+          className="h-full w-full object-cover object-center"
+        />
+
+        {/* Overall dark overlay */}
+        <div className="absolute inset-0 bg-black/55" />
+
+        {/* Left side darkening - keeps text readable */}
+        <div className="absolute inset-0 bg-linear-to-r from-[#111211]/95 via-[#111211]/70 to-[#111211]/20" />
+
+        {/* Bottom fade */}
+        <div className="absolute inset-0 bg-linear-to-t from-[#111211] via-transparent to-black/20" />
+
+        {/* Subtle green glow */}
+        <div className="absolute right-[10%] top-[25%] h-100 w-100 rounded-full bg-[#D4AF37]/10 blur-[120px]" />
+      </div>
+
+      <div className="relative mx-auto flex min-h-180 max-w-7xl items-center px-6 py-32 xl:px-0">
+        <div className="grid w-full items-center gap-16 lg:grid-cols-2 ">
+          {/* LEFT */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="max-w-xl"
+          >
+            <div className="flex items-center justify-center gap-3 border border-[#D4AF37] bg-[#D4AF37]/10 rounded-full px-4 py-3 tracking-widest mb-5 w-fit">
+              <div className="h-2 w-2 rounded-full bg-[#D4AF37] animate-pulse" />
+              <p className=" text-xs uppercase text-[#D4AF37] font-body">
+                Customers — Pre-Launch
+              </p>
+            </div>
+
+            <h1 className="text-5xl font-heading font-semibold leading-[0.95] tracking-tighter sm:text-6xl lg:text-7xl text-white">
+              Beyond delivery,
+              <br />
+              <span className="text-[#D4AF37]">it&apos;s care.</span>
+            </h1>
+
+            <p className="mt-7 max-w-md text-sm leading-7 text-white/55 sm:text-base">
+              More than just getting food from one place to another. C-Ride
+              connects you to the things you love, with care built into every
+              delivery.
+            </p>
+
+            <a
+              href="#waitlist"
+              className="mt-8 inline-flex items-center gap-2 rounded-md bg-[#D4AF37] px-5 py-3 text-sm font-medium font-body text-black transition hover:bg-[#c19b2e]"
+            >
+              Get Early Access
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
+          </motion.div>
+
+          {/* FORM */}
+
+          <WaitlistForm />
+        </div>
+      </div>
+    </section>
+  );
+}
+const initialFormData = {
+  name: '',
+  email: '',
+  phone: '',
+  city: '',
+  excitedToOrder: '',
+  useCase: '',
+};
+
+function WaitlistForm() {
+  const [formData, setFormData] = useState(initialFormData);
+  const [error, setError] = useState('');
+
+  const [showError, setShowError] = useState(false);
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+const [isSuccess, setIsSuccess] = useState(false);
+
+const [successMessage, setSuccessMessage] = useState('');
+
+
+  const handleReset = () => {
+    setFormData(initialFormData);
+    setError('');
+    setShowError(false);
+    setSuccessMessage('');
+    setIsSuccess(false);
+  };
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  setError('');
+  setShowError(false);
+
+  if (
+    !formData.name.trim() ||
+    !formData.email.trim() ||
+    !formData.phone.trim() ||
+    !formData.city.trim()
+  ) {
+    setError('Please fill in all required fields.');
+    setShowError(true);
+    return;
+  }
+
+  if (!/\S+@\S+\.\S+/.test(formData.email)) {
+    setError('Please enter a valid email address.');
+    setShowError(true);
+    return;
+  }
+
+  try {
+    setIsSubmitting(true);
+
+    const payload = {
+      fullName: formData.name,
+      email: formData.email,
+      phoneNumber: formData.phone,
+      city: formData.city,
+      orderCategory: formData.excitedToOrder,
+      purpose: formData.useCase,
+    };
+
+    console.log('Submitting:', payload);
+
+    const response = await fetch(
+      'https://backend-service-1rc7.onrender.com/api/v1/waitlist/customer',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: '*/*',
+        },
+        body: JSON.stringify(payload),
+      },
+    );
+
+    const data = await response.json();
+
+    console.log('API response:', data);
+
+    if (!response.ok) {
+      throw new Error(
+        data?.message || 'Failed to submit form. Please try again.',
+      );
+    }
+
+    // API returned 201
+    setSuccessMessage(
+      `Thanks, ${formData.name.split(' ')[0]}. You're officially on the C-Ride waitlist.`,
+    );
+
+    setIsSuccess(true);
+    setFormData(initialFormData);
+  } catch (error) {
+    console.error('Waitlist submission error:', error);
+
+    setError(
+      error instanceof Error
+        ? error.message
+        : 'An error occurred. Please try again.',
+    );
+
+    setShowError(true);
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
+
+  return (
+    <>
+      {isSuccess && <SuccessModal open={isSuccess} message={successMessage} onClose={() => setIsSuccess(false)} onReset={handleReset} />}
+
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.7 }}
+        className="mx-auto w-full max-w-md rounded-xl border border-white/10 bg-black/30 p-5 backdrop-blur-md space-y-5"
+      >
+        <div className="space-y-1">
+          <p className="text-[10px] tracking-widest uppercase text-green-600 font-body ">
+            Get Early Access
+          </p>
+          <p className="text-xl font-heading font-semibold text-white/70">
+            Pre-Launch
+          </p>
+
+          <p className="text-xs leading-5 text-white/30 font-body">
+            First in when we go live in your city.
+          </p>
+        </div>
+
+        <form className="space-y-3" onSubmit={handleSubmit}>
+          {showError && <ErrorMessage message={error} />}
+
+          {isSuccess && <SuccessModal message={successMessage} />}
+          <Input
+            placeholder="Full name"
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            type="text"
+          />
+
+          <Input
+            placeholder="Email address"
+            value={formData.email}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
+            type="email"
+          />
+
+          <Input
+            placeholder="Phone number"
+            value={formData.phone}
+            onChange={(e) =>
+              setFormData({ ...formData, phone: e.target.value })
+            }
+            maxLength={15}
+         type="tel"
+          />
+
+          <Input
+            placeholder="City"
+            value={formData.city}
+            onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+            type="text"
+          />
+
+          <Input
+            placeholder="I am most excited to order?"
+            value={formData.excitedToOrder}
+            onChange={(e) =>
+              setFormData({ ...formData, excitedToOrder: e.target.value })
+            }
+            type="text"
+          />
+
+          <Input
+            placeholder="I'd use C-Ride for..."
+            value={formData.useCase}
+            onChange={(e) =>
+              setFormData({ ...formData, useCase: e.target.value })
+            }
+            type="text"
+          />
+
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="mt-3 w-full rounded-md bg-[#D4AF37] py-3 text-sm font-medium uppercase tracking-wide text-black transition hover:bg-[#c19b2e] font-body cursor-pointer disabled:cursor-not-allowed disabled:opacity-60
+"
+          >
+            {isSubmitting ? 'Submitting...' : 'Secure my spot'}
+          </button>
+        </form>
+
+        <p className="mt-4 text-center text-xs font-body leading-5 text-white/30">
+          Be among the first to experience C-Ride.
+        </p>
+      </motion.div>
+    </>
+  );
+}
