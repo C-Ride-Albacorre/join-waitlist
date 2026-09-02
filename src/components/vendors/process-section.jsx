@@ -27,9 +27,9 @@ const steps = [
 ];
 
 const images = [
-  '/src/assets/restaurant.jpg',
-  '/src/assets/lagos-at-night.jpg',
-  '/src/assets/food.jpg',
+  '../../assets/restaurant.jpg',
+  '../../assets/lagos-at-night.jpg',
+  '../../assets/food.jpg',
 ];
 
 export default function ProcessSection() {
@@ -115,7 +115,7 @@ export default function ProcessSection() {
               >
                 <img
                   src={image}
-                  alt=""
+                  alt="images"
                   className={`
                     h-full
                     w-full

@@ -1,5 +1,10 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import food from '../../assets/food.jpg';
+import gifts from '../../assets/gifts.jpg';
+
+
+
 
 
 
@@ -9,7 +14,7 @@ const orderCards = [
     title: 'Order From Lagos’ Finest',
     description:
       'Verified restaurants, home chefs, grocery stores, and essentials, all in one app. Delivered in a car, temperature controlled, exactly the way it was made.',
-    image: '/src/assets/food.jpg',
+    image: food,
     subTitleColor: 'text-[#D4AF37]',
   },
   {
@@ -18,7 +23,7 @@ const orderCards = [
     title: 'Send anything that matters',
     description:
       "Documents, gifts, a camera setup, a laptop — whatever you're sending across Lagos rides secure, tracked from pickup to doorstep, handled by verified drivers who treat it like their own.",
-    image: '/src/assets/gifts.jpg',
+    image: gifts,
   },
 ];
 

@@ -5,6 +5,7 @@ import ErrorMessage from '../ui/error';
 import SuccessMessage from '../ui/success';
 import { useState } from 'react';
 import SuccessModal from '../ui/success';
+import restaurant from '../../assets/restaurant.jpg';
 
 export default function VendorHero() {
   return (
@@ -15,8 +16,8 @@ export default function VendorHero() {
       {/* Background */}
       <div className="absolute inset-0">
         <img
-          src="/src/assets/restaurant.jpg"
-          alt=""
+          src={restaurant}
+          alt="restaurant"
           aria-hidden="true"
           className="h-full w-full object-cover object-center"
         />

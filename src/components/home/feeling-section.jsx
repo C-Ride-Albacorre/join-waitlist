@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import lagos  from '../../assets/lagos-at-night.jpg';
 
 export default function FeelingSection() {
   return (
@@ -13,7 +14,7 @@ export default function FeelingSection() {
             className="relative overflow-hidden rounded-lg shadow-lg"
           >
             <img
-              src="/src/assets/lagos-at-night.jpg"
+              src={lagos}
               alt="Lagos at night"
               className="aspect-[1.35] h-full w-full object-cover"
             />

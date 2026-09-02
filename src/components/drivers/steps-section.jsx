@@ -7,7 +7,7 @@ const steps = [
     title: 'Join the network',
     description:
       "Join the waitlist and we'll reach out with onboarding details as we approach launch — background checks and the essentials, handled properly.",
-    image: '/src/assets/delivery.jpg',
+    image: '../../assets/delivery.jpg',
   },
   {
     number: '02',
@@ -15,7 +15,7 @@ const steps = [
     title: 'Move with purpose',
     description:
       'Accept premium deliveries on your schedule. Real-time tracking, proactive updates, and a network that respects the work you do.',
-    image: '/src/assets/car-driver.jpg',
+    image: '../../assets/car-driver.jpg',
   },
   {
     number: '03',
@@ -23,7 +23,7 @@ const steps = [
     title: 'Deliver the experience',
     description:
       "Every order is someone's reputation on the doorstep. You carry it with care — temperature-controlled, safe, and presented like it matters.",
-    image: '/src/assets/parcel.jpg',
+    image: '../../assets/parcel.jpg',
   },
 ];
 

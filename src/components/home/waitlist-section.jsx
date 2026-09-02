@@ -4,6 +4,7 @@ import { Check, CheckCircle } from 'lucide-react';
 import { useState } from 'react';
 import SuccessModal from '../ui/success';
 import ErrorMessage from '../ui/error';
+import lagos from '../../assets/lagos-at-night.jpg';
 
 const initialFormData = {
   name: '',
@@ -133,8 +134,8 @@ export default function WaitlistSection() {
         {/* Background */}
         <div className="absolute inset-0">
           <img
-            src="/src/assets/lagos-at-night.jpg"
-            alt=""
+            src={lagos}
+            alt="Lagos at night"
             aria-hidden="true"
             className="h-full w-full object-cover opacity-20"
           />

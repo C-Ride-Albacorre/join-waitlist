@@ -2,6 +2,7 @@ import { Mail, MapPin, Phone } from 'lucide-react';
 
 import { FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import logo from '../../assets/svg/logo-main.svg';
 
 export default function Footer() {
   return (
@@ -11,7 +12,7 @@ export default function Footer() {
           {/* BRAND */}
           <div className="lg:col-span-2">
             <img
-              src="/src/assets/svg/logo-main.svg"
+              src={logo}
               alt="C-Ride"
               width="100"
               height="40"

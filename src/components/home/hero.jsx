@@ -4,6 +4,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { Input } from '../ui/input';
 import ErrorMessage from '../ui/error';
 import SuccessModal from '../ui/success';
+import lagos from '../../assets/lagos-at-night.jpg';
 
 export default function Hero() {
   return (
@@ -14,8 +15,8 @@ export default function Hero() {
       {/* Background */}
       <div className="absolute inset-0">
         <img
-          src="/src/assets/lagos-at-night.jpg"
-          alt=""
+          src={lagos}
+          alt="Lagos at night"
           aria-hidden="true"
           className="h-full w-full object-cover object-center"
         />
@@ -95,10 +96,9 @@ function WaitlistForm() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-const [isSuccess, setIsSuccess] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
-const [successMessage, setSuccessMessage] = useState('');
-
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleReset = () => {
     setFormData(initialFormData);
@@ -108,91 +108,97 @@ const [successMessage, setSuccessMessage] = useState('');
     setIsSuccess(false);
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  setError('');
-  setShowError(false);
+    setError('');
+    setShowError(false);
 
-  if (
-    !formData.name.trim() ||
-    !formData.email.trim() ||
-    !formData.phone.trim() ||
-    !formData.city.trim()
-  ) {
-    setError('Please fill in all required fields.');
-    setShowError(true);
-    return;
-  }
-
-  if (!/\S+@\S+\.\S+/.test(formData.email)) {
-    setError('Please enter a valid email address.');
-    setShowError(true);
-    return;
-  }
-
-  try {
-    setIsSubmitting(true);
-
-    const payload = {
-      fullName: formData.name,
-      email: formData.email,
-      phoneNumber: formData.phone,
-      city: formData.city,
-      orderCategory: formData.excitedToOrder,
-      purpose: formData.useCase,
-    };
-
-    console.log('Submitting:', payload);
-
-    const response = await fetch(
-      'https://backend-service-1rc7.onrender.com/api/v1/waitlist/customer',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: '*/*',
-        },
-        body: JSON.stringify(payload),
-      },
-    );
-
-    const data = await response.json();
-
-    console.log('API response:', data);
-
-    if (!response.ok) {
-      throw new Error(
-        data?.message || 'Failed to submit form. Please try again.',
-      );
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.phone.trim() ||
+      !formData.city.trim()
+    ) {
+      setError('Please fill in all required fields.');
+      setShowError(true);
+      return;
     }
 
-    // API returned 201
-    setSuccessMessage(
-      `Thanks, ${formData.name.split(' ')[0]}. You're officially on the C-Ride waitlist.`,
-    );
+    if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      setError('Please enter a valid email address.');
+      setShowError(true);
+      return;
+    }
 
-    setIsSuccess(true);
-    setFormData(initialFormData);
-  } catch (error) {
-    console.error('Waitlist submission error:', error);
+    try {
+      setIsSubmitting(true);
 
-    setError(
-      error instanceof Error
-        ? error.message
-        : 'An error occurred. Please try again.',
-    );
+      const payload = {
+        fullName: formData.name,
+        email: formData.email,
+        phoneNumber: formData.phone,
+        city: formData.city,
+        orderCategory: formData.excitedToOrder,
+        purpose: formData.useCase,
+      };
 
-    setShowError(true);
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+      console.log('Submitting:', payload);
 
+      const response = await fetch(
+        'https://backend-service-1rc7.onrender.com/api/v1/waitlist/customer',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: '*/*',
+          },
+          body: JSON.stringify(payload),
+        },
+      );
+
+      const data = await response.json();
+
+      console.log('API response:', data);
+
+      if (!response.ok) {
+        throw new Error(
+          data?.message || 'Failed to submit form. Please try again.',
+        );
+      }
+
+      // API returned 201
+      setSuccessMessage(
+        `Thanks, ${formData.name.split(' ')[0]}. You're officially on the C-Ride waitlist.`,
+      );
+
+      setIsSuccess(true);
+      setFormData(initialFormData);
+    } catch (error) {
+      console.error('Waitlist submission error:', error);
+
+      setError(
+        error instanceof Error
+          ? error.message
+          : 'An error occurred. Please try again.',
+      );
+
+      setShowError(true);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <>
-      {isSuccess && <SuccessModal open={isSuccess} message={successMessage} onClose={() => setIsSuccess(false)} onReset={handleReset} />}
+      {isSuccess && (
+        <SuccessModal
+          open={isSuccess}
+          message={successMessage}
+          onClose={() => setIsSuccess(false)}
+          onReset={handleReset}
+        />
+      )}
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -240,7 +246,7 @@ const handleSubmit = async (e) => {
               setFormData({ ...formData, phone: e.target.value })
             }
             maxLength={15}
-         type="tel"
+            type="tel"
           />
 
           <Input
