@@ -1,5 +1,3 @@
-
-
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { Input } from '../ui/input';
@@ -106,9 +104,7 @@ function WaitlistForm() {
     setIsSuccess(false);
   };
 
-
-
-   const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setError('');
@@ -182,97 +178,102 @@ function WaitlistForm() {
     }
   };
 
-
-  
-
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.2, duration: 0.7 }}
-      className="mx-auto w-full max-w-md rounded-xl border border-white/10 bg-black/30 p-5 backdrop-blur-md space-y-5"
-    >
-      <div className="space-y-1">
-        <p className="text-[10px] tracking-widest uppercase text-green-600 font-body ">
-          Pre-Launch
-        </p>
-        <p className="text-xl font-heading font-semibold text-white/70">
-          Become a C-Ride Driver
-        </p>
-
-        <p className="text-xs leading-5 text-white/30 font-body">
-          No app yet — we'll contact you the moment we go live in your city.
-        </p>
-      </div>
-
-      <form className="space-y-3" onSubmit={handleSubmit}>
-        {showError && <ErrorMessage message={error} />}
-
-        {isSuccess && <SuccessModal message={successMessage} />}
-        <Input
-          placeholder="Full name"
-          value={formData.fullName}
-          onChange={(e) =>
-            setFormData({ ...formData, fullName: e.target.value })
-          }
-          type="text"
+    <>
+      {isSuccess && (
+        <SuccessModal
+          open={isSuccess}
+          message={successMessage}
+          onClose={() => setIsSuccess(false)}
+          onReset={handleReset}
         />
+      )}
 
-        <Input
-          placeholder="Email address"
-          value={formData.email}
-          onChange={(e) =>
-            setFormData({ ...formData, email: e.target.value })
-          }
-          type="email"
-        />
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.7 }}
+        className="mx-auto w-full max-w-md rounded-xl border border-white/10 bg-black/30 p-5 backdrop-blur-md space-y-5"
+      >
+        <div className="space-y-1">
+          <p className="text-[10px] tracking-widest uppercase text-green-600 font-body ">
+            Pre-Launch
+          </p>
+          <p className="text-xl font-heading font-semibold text-white/70">
+            Become a C-Ride Driver
+          </p>
 
-        <Input
-          placeholder="Phone number"
-          value={formData.phoneNumber}
-          onChange={(e) =>
-            setFormData({ ...formData, phoneNumber: e.target.value })
-          }
-          maxLength={15}
-          type="tel"
-        />
+          <p className="text-xs leading-5 text-white/30 font-body">
+            No app yet — we'll contact you the moment we go live in your city.
+          </p>
+        </div>
 
-        <Input
-          placeholder="City"
-          value={formData.city}
-          onChange={(e) =>
-            setFormData({ ...formData, city: e.target.value })
-          }
-          type="text"
-        />
+        <form className="space-y-3" onSubmit={handleSubmit}>
+          {showError && <ErrorMessage message={error} />}
 
-        <Input
-          placeholder="Vehicle Type (e.g., Car, Bike, etc.)"
-          value={formData.vehicleType}
-          onChange={(e) =>
-            setFormData({ ...formData, vehicleType: e.target.value })
-          }
-          type="text"
-        />
+          <Input
+            placeholder="Full name"
+            value={formData.fullName}
+            onChange={(e) =>
+              setFormData({ ...formData, fullName: e.target.value })
+            }
+            type="text"
+          />
 
-        <Input
-          placeholder="Vehicle Year"
-          value={formData.vehicleYear}
-          onChange={(e) =>
-            setFormData({ ...formData, vehicleYear: e.target.value })
-          }
-          type="number"
-        />
+          <Input
+            placeholder="Email address"
+            value={formData.email}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
+            type="email"
+          />
 
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="mt-3 w-full rounded-md bg-[#D4AF37] py-3 text-sm font-medium uppercase tracking-wide text-black transition hover:bg-[#c19b2e] font-body cursor-pointer disabled:cursor-not-allowed disabled:opacity-60
+          <Input
+            placeholder="Phone number"
+            value={formData.phoneNumber}
+            onChange={(e) =>
+              setFormData({ ...formData, phoneNumber: e.target.value })
+            }
+            maxLength={15}
+            type="tel"
+          />
+
+          <Input
+            placeholder="City"
+            value={formData.city}
+            onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+            type="text"
+          />
+
+          <Input
+            placeholder="Vehicle Type (e.g., Car, Bike, etc.)"
+            value={formData.vehicleType}
+            onChange={(e) =>
+              setFormData({ ...formData, vehicleType: e.target.value })
+            }
+            type="text"
+          />
+
+          <Input
+            placeholder="Vehicle Year"
+            value={formData.vehicleYear}
+            onChange={(e) =>
+              setFormData({ ...formData, vehicleYear: e.target.value })
+            }
+            type="number"
+          />
+
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="mt-3 w-full rounded-md bg-[#D4AF37] py-3 text-sm font-medium uppercase tracking-wide text-black transition hover:bg-[#c19b2e] font-body cursor-pointer disabled:cursor-not-allowed disabled:opacity-60
      "
-        >
-          {isSubmitting ? 'Submitting...' : 'Join Driver Waitlist'}
-        </button>
-      </form>
-    </motion.div>
+          >
+            {isSubmitting ? 'Submitting...' : 'Join Driver Waitlist'}
+          </button>
+        </form>
+      </motion.div>
+    </>
   );
 }

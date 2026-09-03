@@ -111,158 +111,168 @@ export default function WaitlistSection() {
   };
 
   return (
-    <section
-      id="waitlist"
-      className="relative overflow-hidden bg-[#111211] py-20 sm:py-28"
-    >
-      {/* Background */}
-      <div className="absolute inset-0">
-        <img
-          src={car}
-          alt="Car"
-          aria-hidden="true"
-          className="h-full w-full object-cover opacity-20"
+    <>
+      {isSuccess && (
+        <SuccessModal
+          open={isSuccess}
+          message={successMessage}
+          onClose={() => setIsSuccess(false)}
+          onReset={handleReset}
         />
+      )}
 
-        <div className="absolute inset-0 bg-[#111211]/80" />
+      <section
+        id="waitlist"
+        className="relative overflow-hidden bg-[#111211] py-20 sm:py-28"
+      >
+        {/* Background */}
+        <div className="absolute inset-0">
+          <img
+            src={car}
+            alt="Car"
+            aria-hidden="true"
+            className="h-full w-full object-cover opacity-20"
+          />
 
-        <div className="absolute left-[10%] top-[30%] h-87.5 w-87.5 rounded-full bg-[#D4AF37]/10 blur-[120px]" />
-      </div>
+          <div className="absolute inset-0 bg-[#111211]/80" />
 
-      <div className="relative mx-auto max-w-7xl px-6 xl:px-0">
-        <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-24">
-          {/* TEXT */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center justify-center gap-3 border border-[#D4AF37] bg-[#D4AF37]/10 rounded-full px-4 py-3 tracking-widest mb-5 w-fit">
-              <div className="h-2 w-2 rounded-full bg-[#D4AF37] animate-pulse" />
-              <p className=" text-xs uppercase text-[#D4AF37] font-body">
-                THE PIONEER WAVE
-              </p>
-            </div>
-
-            <h2 className="mt-4 font-heading text-5xl font-semibold leading-[0.9] tracking-tighter text-white sm:text-6xl">
-              Be in the first wave of
-              <br />
-              <span className="text-[#D4AF37]">C-Ride drivers.</span>
-            </h2>
-
-            <p className="mt-7 max-w-md font-body leading-7 text-white/45">
-              We haven't launched yet — and the first drivers set the standard.
-              Join the waitlist and we'll reach out before we go live in your
-              city.
-            </p>
-
-            <div className="mt-7 space-y-4">
-              {[
-                'Background checks handled',
-                'Fair & transparent pay',
-                'You set your own hours',
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center gap-3 font-body text-sm text-white/90"
-                >
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-green-500/10">
-                    <Check size={12} className="text-green-500" />
-                  </div>
-                  {item}
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* FORM */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="rounded-xl border border-white/10 bg-black/40 p-5 backdrop-blur-md"
-          >
-            <div className="mb-6">
-              <p className="font-body text-[10px] uppercase tracking-[0.2em] text-[#D4AF37]">
-                Get Early Access
-              </p>
-
-              <h3 className="mt-1 font-heading text-xl font-semibold text-white/80">
-                Join the waitlist
-              </h3>
-            </div>
-
-            <form className="space-y-3" onSubmit={handleSubmit}>
-              {showError && <ErrorMessage message={error} />}
-
-              {isSuccess && <SuccessModal message={successMessage} />}
-              <Input
-                placeholder="Full name"
-                value={formData.fullName}
-                onChange={(e) =>
-                  setFormData({ ...formData, fullName: e.target.value })
-                }
-                type="text"
-              />
-
-              <Input
-                placeholder="Email address"
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-                type="email"
-              />
-
-              <Input
-                placeholder="Phone number"
-                value={formData.phoneNumber}
-                onChange={(e) =>
-                  setFormData({ ...formData, phoneNumber: e.target.value })
-                }
-                maxLength={15}
-                type="tel"
-              />
-
-              <Input
-                placeholder="City"
-                value={formData.city}
-                onChange={(e) =>
-                  setFormData({ ...formData, city: e.target.value })
-                }
-                type="text"
-              />
-
-              <Input
-                placeholder="Vehicle Type (e.g., Car, Bike, etc.)"
-                value={formData.vehicleType}
-                onChange={(e) =>
-                  setFormData({ ...formData, vehicleType: e.target.value })
-                }
-                type="text"
-              />
-
-              <Input
-                placeholder="Vehicle Year"
-                value={formData.vehicleYear}
-                onChange={(e) =>
-                  setFormData({ ...formData, vehicleYear: e.target.value })
-                }
-                type="number"
-              />
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="mt-3 w-full rounded-md bg-[#D4AF37] py-3 text-sm font-medium uppercase tracking-wide text-black transition hover:bg-[#c19b2e] font-body cursor-pointer disabled:cursor-not-allowed disabled:opacity-60
-            "
-              >
-                {isSubmitting ? 'Submitting...' : 'Join Driver Waitlist'}
-              </button>
-            </form>
-          </motion.div>
+          <div className="absolute left-[10%] top-[30%] h-87.5 w-87.5 rounded-full bg-[#D4AF37]/10 blur-[120px]" />
         </div>
-      </div>
-    </section>
+
+        <div className="relative mx-auto max-w-7xl px-6 xl:px-0">
+          <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-24">
+            {/* TEXT */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex items-center justify-center gap-3 border border-[#D4AF37] bg-[#D4AF37]/10 rounded-full px-4 py-3 tracking-widest mb-5 w-fit">
+                <div className="h-2 w-2 rounded-full bg-[#D4AF37] animate-pulse" />
+                <p className=" text-xs uppercase text-[#D4AF37] font-body">
+                  THE PIONEER WAVE
+                </p>
+              </div>
+
+              <h2 className="mt-4 font-heading text-5xl font-semibold leading-[0.9] tracking-tighter text-white sm:text-6xl">
+                Be in the first wave of
+                <br />
+                <span className="text-[#D4AF37]">C-Ride drivers.</span>
+              </h2>
+
+              <p className="mt-7 max-w-md font-body leading-7 text-white/45">
+                We haven't launched yet — and the first drivers set the
+                standard. Join the waitlist and we'll reach out before we go
+                live in your city.
+              </p>
+
+              <div className="mt-7 space-y-4">
+                {[
+                  'Background checks handled',
+                  'Fair & transparent pay',
+                  'You set your own hours',
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 font-body text-sm text-white/90"
+                  >
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-green-500/10">
+                      <Check size={12} className="text-green-500" />
+                    </div>
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* FORM */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="rounded-xl border border-white/10 bg-black/40 p-5 backdrop-blur-md"
+            >
+              <div className="mb-6">
+                <p className="font-body text-[10px] uppercase tracking-[0.2em] text-[#D4AF37]">
+                  Get Early Access
+                </p>
+
+                <h3 className="mt-1 font-heading text-xl font-semibold text-white/80">
+                  Join the waitlist
+                </h3>
+              </div>
+
+              <form className="space-y-3" onSubmit={handleSubmit}>
+                {showError && <ErrorMessage message={error} />}
+
+                <Input
+                  placeholder="Full name"
+                  value={formData.fullName}
+                  onChange={(e) =>
+                    setFormData({ ...formData, fullName: e.target.value })
+                  }
+                  type="text"
+                />
+
+                <Input
+                  placeholder="Email address"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                  type="email"
+                />
+
+                <Input
+                  placeholder="Phone number"
+                  value={formData.phoneNumber}
+                  onChange={(e) =>
+                    setFormData({ ...formData, phoneNumber: e.target.value })
+                  }
+                  maxLength={15}
+                  type="tel"
+                />
+
+                <Input
+                  placeholder="City"
+                  value={formData.city}
+                  onChange={(e) =>
+                    setFormData({ ...formData, city: e.target.value })
+                  }
+                  type="text"
+                />
+
+                <Input
+                  placeholder="Vehicle Type (e.g., Car, Bike, etc.)"
+                  value={formData.vehicleType}
+                  onChange={(e) =>
+                    setFormData({ ...formData, vehicleType: e.target.value })
+                  }
+                  type="text"
+                />
+
+                <Input
+                  placeholder="Vehicle Year"
+                  value={formData.vehicleYear}
+                  onChange={(e) =>
+                    setFormData({ ...formData, vehicleYear: e.target.value })
+                  }
+                  type="number"
+                />
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="mt-3 w-full rounded-md bg-[#D4AF37] py-3 text-sm font-medium uppercase tracking-wide text-black transition hover:bg-[#c19b2e] font-body cursor-pointer disabled:cursor-not-allowed disabled:opacity-60
+            "
+                >
+                  {isSubmitting ? 'Submitting...' : 'Join Driver Waitlist'}
+                </button>
+              </form>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

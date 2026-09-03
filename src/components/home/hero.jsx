@@ -222,7 +222,6 @@ function WaitlistForm() {
         <form className="space-y-3" onSubmit={handleSubmit}>
           {showError && <ErrorMessage message={error} />}
 
-          {isSuccess && <SuccessModal message={successMessage} />}
           <Input
             placeholder="Full name"
             value={formData.name}

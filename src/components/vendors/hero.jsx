@@ -177,6 +177,15 @@ function WaitlistForm() {
   };
   return (
     <>
+      {isSuccess && (
+        <SuccessModal
+          open={isSuccess}
+          message={successMessage}
+          onClose={() => setIsSuccess(false)}
+          onReset={handleReset}
+        />
+      )}
+
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -199,7 +208,6 @@ function WaitlistForm() {
         <form className="space-y-3" onSubmit={handleSubmit}>
           {showError && <ErrorMessage message={error} />}
 
-          {isSuccess && <SuccessModal message={successMessage} />}
           <Input
             placeholder="Full name"
             value={formData.name}

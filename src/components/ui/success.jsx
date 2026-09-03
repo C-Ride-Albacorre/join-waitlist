@@ -61,7 +61,7 @@ export default function  SuccessModal({ open, message, onClose, onReset }) {
               duration: 0.3,
               ease: 'easeOut',
             }}
-            className="relative w-full max-w-md overflow-hidden rounded-2xl border border-white/10 bg-[#111211] p-7 text-center shadow-2xl sm:p-9"
+            className="relative w-full max-w-xs md:max-w-md overflow-hidden rounded-2xl border border-white/10 bg-[#111211] p-7 text-center shadow-2xl sm:p-9"
           >
             {/* GOLD GLOW */}
             <div className="pointer-events-none absolute left-1/2 top-0 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#D4AF37]/15 blur-[70px]" />
