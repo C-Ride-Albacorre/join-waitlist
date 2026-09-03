@@ -1,4 +1,7 @@
 import { motion } from 'framer-motion';
+import delivery from '../../assets/delivery.jpg';
+import carDriver from '../../assets/car-driver.jpg';
+import parcel from '../../assets/parcel.jpg';
 
 const steps = [
   {
@@ -7,7 +10,7 @@ const steps = [
     title: 'Join the network',
     description:
       "Join the waitlist and we'll reach out with onboarding details as we approach launch — background checks and the essentials, handled properly.",
-    image: '../../assets/delivery.jpg',
+    image: delivery,
   },
   {
     number: '02',
@@ -15,7 +18,7 @@ const steps = [
     title: 'Move with purpose',
     description:
       'Accept premium deliveries on your schedule. Real-time tracking, proactive updates, and a network that respects the work you do.',
-    image: '../../assets/car-driver.jpg',
+    image: carDriver,
   },
   {
     number: '03',
@@ -23,7 +26,7 @@ const steps = [
     title: 'Deliver the experience',
     description:
       "Every order is someone's reputation on the doorstep. You carry it with care — temperature-controlled, safe, and presented like it matters.",
-    image: '../../assets/parcel.jpg',
+    image: parcel,
   },
 ];
 

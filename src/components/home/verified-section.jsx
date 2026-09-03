@@ -1,4 +1,9 @@
 import { motion } from 'framer-motion';
+import car from '../../assets/car.jpg';
+import restaurant from '../../assets/restaurant.jpg';
+import food from '../../assets/food.jpg';
+import lagos from '../../assets/lagos-at-night.jpg';
+import gifts from '../../assets/gifts.jpg';
 
 const cards = [
   {
@@ -6,7 +11,7 @@ const cards = [
     desc: 'Discover businesses on C-Ride with confidence.',
     subdesc: 'EVERY STOREFRONT.',
     accent: 'VERIFIED.',
-    image: '../../assets/restaurant.jpg',
+    image: restaurant,
     className: 'md:col-span-4 md:row-span-2',
     layout: 'horizontal',
   },
@@ -16,7 +21,7 @@ const cards = [
     desc: 'A more controlled way to move your order through Lagos.',
     accent: 'In a car',
     subdesc: 'NOT ON A BIKE',
-    image: '../../assets/car.jpg',
+    image: car,
     className: 'md:col-span-2 md:row-span-2',
     layout: 'vertical',
     borderClassName: 'border-t border-white/10',
@@ -27,7 +32,7 @@ const cards = [
     desc: 'Your food arrives the way it left the kitchen.',
     accent: 'Just right',
     subdesc: 'EVERY ORDER',
-    image: '../../assets/food.jpg',
+    image: food,
     className: 'md:col-span-2 md:row-span-2',
     layout: 'vertical',
     borderClassName: 'border-t border-white/10',
@@ -38,7 +43,7 @@ const cards = [
     desc: "Get your order tracked in real-time.",
     accent: 'Live',
     subdesc: 'PICKUP TO DOOR',
-    image: '../../assets/lagos-at-night.jpg',
+    image: lagos,
     className: 'md:col-span-2 md:row-span-2',
     layout: 'vertical',
     borderClassName: 'border-t border-white/10',
@@ -49,7 +54,7 @@ const cards = [
     desc: 'Your order is handled by verified drivers who treat it like their own.',
     subdesc: 'EVERY DELIVERY.',
     accent: 'Live.',
-    image: '../../assets/gifts.jpg',
+    image: gifts,
     className: 'md:col-span-2 md:row-span-2',
     layout: 'vertical',
     borderClassName: 'border-t border-white/10',

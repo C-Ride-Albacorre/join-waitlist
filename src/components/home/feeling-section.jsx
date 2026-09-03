@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
-import lagos  from '../../assets/lagos-at-night.jpg';
+import lagos from '../../assets/lagos-at-night.jpg';
 
 export default function FeelingSection() {
   return (
-    <section  className="bg-[#111211] py-20 sm:py-28">
+    <section className="bg-[#111211] py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-6 xl:px-0">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
           {/* IMAGE */}

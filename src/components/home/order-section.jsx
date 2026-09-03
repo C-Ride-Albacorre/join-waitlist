@@ -3,11 +3,6 @@ import { ArrowUpRight } from 'lucide-react';
 import food from '../../assets/food.jpg';
 import gifts from '../../assets/gifts.jpg';
 
-
-
-
-
-
 const orderCards = [
   {
     subTitle: 'Order',
@@ -29,7 +24,10 @@ const orderCards = [
 
 export default function OrderSection() {
   return (
-    <section id='why-c-ride' className="bg-[#e9e9e3] py-20 text-[#151515] sm:py-28">
+    <section
+      id="why-c-ride"
+      className="bg-[#e9e9e3] py-20 text-[#151515] sm:py-28"
+    >
       <div className="mx-auto max-w-7xl space-y-16 px-6 xl:px-0">
         <motion.div
           initial={{ opacity: 0, y: 25 }}

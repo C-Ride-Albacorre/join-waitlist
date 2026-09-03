@@ -1,6 +1,9 @@
 
 
 import { motion } from 'framer-motion';
+import restaurant from '../../assets/restaurant.jpg';
+import lagos from '../../assets/lagos-at-night.jpg';
+import food from '../../assets/food.jpg';
 
 const steps = [
   {
@@ -27,9 +30,9 @@ const steps = [
 ];
 
 const images = [
-  '../../assets/restaurant.jpg',
-  '../../assets/lagos-at-night.jpg',
-  '../../assets/food.jpg',
+  restaurant,
+  lagos,
+  food,
 ];
 
 export default function ProcessSection() {

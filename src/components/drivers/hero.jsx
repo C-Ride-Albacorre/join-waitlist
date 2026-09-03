@@ -206,7 +206,7 @@ function WaitlistForm() {
       </div>
 
       <form className="space-y-3" onSubmit={handleSubmit}>
-        {showError && <ErrorMessae message={error} />}
+        {showError && <ErrorMessage message={error} />}
 
         {isSuccess && <SuccessModal message={successMessage} />}
         <Input
