@@ -99,12 +99,9 @@ export default function NavBar() {
               }}
             >
               <div className="flex items-center justify-between border-b border-white/10 px-6 py-5">
-                <img
-                  src={logo}
-                  alt="C-Ride"
-                  width="110"
-                  height="44"
-                />
+                <Link to="/" className="shrink-0">
+                  <img src={logo} alt="C-Ride" width="110" height="44" />
+                </Link>
 
                 <button
                   type="button"
@@ -182,4 +179,3 @@ function MobileLink({ href, label, onClick, isRoute = false }) {
     </a>
   );
 }
-
