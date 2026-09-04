@@ -1,5 +1,3 @@
-
-
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -8,7 +6,7 @@ const faqs = [
   {
     question: 'What is C-Ride?',
     answer:
-      'CRide is in pre-launch. Join the waitlist today and you\'ll be among the first to get access when we go live in your city.',
+      "CRide is in pre-launch. Join the waitlist today and you'll be among the first to get access when we go live in your city.",
   },
   {
     question: 'What can I order on CRide?',
@@ -28,7 +26,7 @@ const faqs = [
   {
     question: 'What happens after I join the waitlist?',
     answer:
-      'You\'ll receive a confirmation, then a priority early-access invitation the moment we go live in your city. Early members get in before the public.',
+      "You'll receive a confirmation, then a priority early-access invitation the moment we go live in your city. Early members get in before the public.",
   },
 ];
 
@@ -57,8 +55,8 @@ export default function FAQSection() {
 
             <p className="mt-6 max-w-lg font-body text-sm leading-7 text-white/45">
               Still curious?{' '}
-              <a href="mailto:hello@c-ride.ng" className="text-green-500">
-                hello@c-ride.ng
+              <a href="mailto:info@c-ride.co" className="text-green-500">
+                info@c-ride.co
               </a>
             </p>
           </motion.div>

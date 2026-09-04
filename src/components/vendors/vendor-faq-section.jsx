@@ -1,5 +1,3 @@
-
-
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -58,8 +56,8 @@ export default function VendorFAQSection() {
             <p className="mt-6 max-w-lg font-body text-sm leading-7 text-white/45">
               Everything a serious vendor needs to know before committing. More
               questions? Reach us at{' '}
-              <a href="mailto:hello@c-ride.ng" className="text-green-500">
-                hello@c-ride.ng
+              <a href="mailto:info@c-ride.co" className="text-green-500">
+                info@c-ride.co
               </a>
             </p>
           </motion.div>
