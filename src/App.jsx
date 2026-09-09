@@ -5,6 +5,7 @@ import Drivers from './pages/drivers';
 import Home from './pages/home';
 import Layout from './components/ui/layout';
 import Vendors from './pages/vendors';
+import MetaPixel from './components/meta-pixel';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -20,6 +21,8 @@ function App() {
   return (
     <>
       <ScrollToTop />
+
+       <MetaPixel />
 
       <Layout>
         <Routes>
